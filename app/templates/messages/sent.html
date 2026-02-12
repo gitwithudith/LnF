@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Sent Messages - Campus Lost & Found{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold">Messages</h1>
+    <a href="{{ url_for('messages.compose') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+        <i class="fas fa-plus mr-2"></i>New Message
+    </a>
+</div>
+
+<div class="bg-white rounded-lg shadow-md mb-6">
+    <div class="border-b border-gray-200">
+        <nav class="flex">
+            <a href="{{ url_for('messages.inbox') }}" class="px-6 py-3 text-gray-600 hover:text-gray-800">
+                Inbox
+            </a>
+            <a href="{{ url_for('messages.sent') }}" class="px-6 py-3 border-b-2 border-blue-600 text-blue-600 font-medium">
+                Sent
+            </a>
+        </nav>
+    </div>
+    
+    <div class="p-6">
+        {% if messages %}
+            <div class="space-y-3">
+                {% for message in messages %}
+                <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-semibold text-lg">{{ message.subject }}</h3>
+                        <span class="text-sm text-gray-500">{{ message.created_at.strftime('%b %d, %I:%M %p') }}</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-2">To: <span class="font-medium">{{ message.receiver.username }}</span></p>
+                    <p class="text-gray-700 mb-3 line-clamp-2">{{ message.body }}</p>
+                    <div class="flex gap-3">
+                        <a href="{{ url_for('messages.view', message_id=message.id) }}" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                            View Message <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                        {% if message.item %}
+                            <a href="{{ url_for('items.detail', item_id=message.item_id) }}" class="text-green-600 hover:text-green-800 text-sm font-medium">
+                                <i class="fas fa-box mr-1"></i>View Item
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-12 text-gray-500">
+                <i class="fas fa-paper-plane text-6xl mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">No sent messages</h3>
+                <p>You haven't sent any messages yet.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
