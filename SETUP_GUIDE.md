@@ -3,7 +3,7 @@
 
 This guide will help you get the project running and understand it well enough.
 
-## ⚡ Quick Start (5 minutes)
+## Quick Start (5 minutes)
 
 ### Step 1: Extract and Navigate
 ```bash
@@ -185,7 +185,7 @@ find . -type f -name "*.pyc" -delete
 ##
 ---
 
-## 🎓 Bonus: Deployment
+## Bonus: Deployment
 
 Try deploying to Render or Railway:
 
