@@ -60,7 +60,7 @@ It's a Lost and Found system for campus. Think of it as a digital bulletin board
 
 ---
 
-## 🎯 Key Features to Highlight in Interview
+## 🎯 Key Features:
 
 ### 1. User Authentication
 **File**: `app/routes/auth.py`
