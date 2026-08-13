@@ -32,7 +32,7 @@ def create_app(config_name='default'):
     
     # Configure login manager
     login_manager.login_view = 'auth.login'  # Redirect to login page if not authenticated
-    login_manager.login_message = 'Please log in to access this page.'
+    login_manager.login_message = 'It is required you login to access this page.'
     login_manager.login_message_category = 'info'
     
     # User loader callback for Flask-Login
