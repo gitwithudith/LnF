@@ -7,7 +7,8 @@ import os
 from app import create_app
 
 # Create the Flask application
-app = create_app('development')
+config_name = os.environ.get('FLASK_CONFIG', 'development')
+app = create_app(config_name)
 
 if __name__ == '__main__':
     # Get port from environment variable or use 5000
