@@ -26,6 +26,9 @@ def create_app(config_name='default'):
     # Ensure upload folder exists
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     
+    # Ensure instance folder exists for SQLite database
+    os.makedirs(os.path.join(app.root_path, '..', 'instance'), exist_ok=True)
+    
     # Initialize extensions with app
     db.init_app(app)
     login_manager.init_app(app)
